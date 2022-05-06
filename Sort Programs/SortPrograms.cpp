@@ -14,28 +14,28 @@ int main() {
 	cout << "1. Insert\n2. Insert random values" << endl;
 	int ip, size; cin >> ip;
 	cout << "Enter the number of values: ";
-	cin >> size;  int arr[size];
+	cin >> size; int arr[size];
 
 	if (ip == 1) {
 		for (int i = 0;i < size;i++) {
 			cout << i+1 << ": ";
 			cin >> arr[i];
 		}
-	}
-	else {
-		for (int i = 0;i < size;i++)
+	} else {
+		for (int i = 0;i < size;i++) {
 			arr[i] = rand()%100;
+		}
 	}
 
 	cout << "[";
 	for (int i = 0;i < size;i++) {
-		cout << arr[i];
-		(i < size-1) ?  cout << ", " : cout << "]\n\n";
+		cout << arr[i] << (i < size-1 ? ", " : "]\n\n");
 	}
 
 	cout << "1. Bubble Sort\n2. Selection Sort\n3. Insertion Sort" << endl;
 	cout << "4. Merge Sort\n5. Quick Sort" << endl;
 	cout << "Select the type to sort the array: ";
+
 	cin >> ip;
 	switch(ip) {
 		case 1: BubbleSort(arr, size);  break;
@@ -47,7 +47,6 @@ int main() {
 
 	cout << "Sorted List: [";
 	for (int i = 0;i < size;i++) {
-		cout << arr[i];
-		(i < size-1) ?  cout << ", " : cout << "]\n";
+		cout << arr[i] << (i < size-1 ? ", " : "]\n");
 	}
 }
