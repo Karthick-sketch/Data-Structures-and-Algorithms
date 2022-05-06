@@ -1,7 +1,6 @@
 #include <iostream>
 #include <time.h>
-#include "SinglyLinkedListNode.h"
-#include "LinkedList.h"
+#include "SinglyLinkedList.h"
 using namespace std;
 
 void insert(LinkedList* list) {

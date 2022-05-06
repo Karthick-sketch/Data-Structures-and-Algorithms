@@ -1,19 +1,24 @@
 void SelectionSort(int arr[], int size) {
 	bool sorted = true;
-	for (int i = 0;i < size-1 && sorted;i++) // this for loop checks the arr is already sorted or not
-		(arr[i] < arr[i+1]) ? sorted = true : sorted = false;
+	// this for loop checks if the array is already sorted or not
+	for (int i = 0;i < size-1 && sorted;i++) {
+		if (arr[i] < arr[i+1]) {
+			sorted = false;
+		}
+	}
 
 	if (!sorted) {
 		for (int i = 0;i < size-1;i++) {
 			int temp = arr[i], indx = i;
+			// j copy the value of i, because, i's previous position values are sorted
 			for (int j = i;j < size;j++) {
-			// i is assigned to j. because, i's previous position values are sorted
-				if (temp > arr[j]) { // to find small value in the array
-					temp = arr[j]; // then assign the value to temp
-					indx = j; // and assign the position number of the value
+				// to find small value in the array
+				if (temp > arr[j]) {
+					temp = arr[j]; // store the value to temp
+					indx = j; // store the position number of the value
 				}
 			}
-			arr[indx] = arr[i]; // interchanging the values
+			arr[indx] = arr[i]; // interchange the values
 			arr[i] = temp;
 		}
 	}

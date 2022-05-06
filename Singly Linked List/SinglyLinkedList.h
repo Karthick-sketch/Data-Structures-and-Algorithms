@@ -1,3 +1,5 @@
+#include "SinglyLinkedListNode.h"
+
 class LinkedList {
 	Node *head, *tail;
 	int len;

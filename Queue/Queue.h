@@ -3,12 +3,12 @@ class Queue {
 
 	public:
 
-	Queue() {	front = NULL;	rear = NULL;	}
+	Queue() { front = NULL; rear = NULL; }
 
 	void Enqueue(int vl) {
 		Node *node = new Node(vl);
-		if (front == NULL)	front = node;
-		else	rear->setLink(node);
+		if (front == NULL) front = node;
+		else rear->setLink(node);
 		rear = node;
 		std::cout << "Enqueued" << std::endl;
 	}
@@ -17,8 +17,7 @@ class Queue {
 		if (front == NULL) {
 			std::cout << "Queue is empty" << std::endl;
 			rear = NULL;
-		}
-		else {
+		} else {
 			Node* temp = front;
 			front = front->getLink();
 			std::cout << temp->getData() << std::endl;

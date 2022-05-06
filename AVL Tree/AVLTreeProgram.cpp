@@ -2,6 +2,8 @@
 #include <time.h>
 #include "BinaryTreeNode.h"
 #include "BinarySearchTree.h"
+#include "AVLTree.h"
+
 using namespace std;
 
 int main() {
@@ -9,7 +11,7 @@ int main() {
 
 	int num, ip;
 
-	BinarySearchTree bt;
+	AVLTree avl;
 
 	do {
 		cout << "\n0. Close\n1. Insert\n2. Insert random numbers\n3. Search" << endl;
@@ -20,25 +22,25 @@ int main() {
 		switch(num) {
 			case 0: break;
 			case 1: cout << "Enter number of values to insert: "; cin >> ip;
-				for (int i = 0, val;i < ip;i++) { cin >> val; bt.add(val); }
+				for (int i = 0, val;i < ip;i++) { cin >> val; avl.add(val); }
 				cout << "Inserted" << endl; break;
 			case 2: cout << "Enter the number of values: "; cin >> ip;
 				cout << "[";
 				for (int i = 0, val;i < ip;i++) {
 					val = rand()%1000;
 					cout << val << ((i < ip-1) ? ", " : "]\n");
-					bt.add(val);
+					avl.add(val);
 				}
 				cout << "Inserted" << endl; break;
 			case 3:	cout << "Enter the number: ";	cin >> ip;
-				if (bt.search(ip)) cout << ip << " is not in the tree" << endl;
+				if (avl.search(ip)) cout << ip << " is not in the tree" << endl;
 				else cout << ip << " is exists in the tree" << endl;
 				break;
-			case 4: cout << "Largest number: " << bt.maximum() << endl; break;
-			case 5: cout << "Lowest number: " << bt.minimum() << endl; break;
-			case 6: bt.print(); break;
+			case 4: cout << "Largest number: " << avl.maximum() << endl; break;
+			case 5: cout << "Lowest number: " << avl.minimum() << endl; break;
+			case 6: avl.print(); break;
 			case 7: cout << "Enter the number to remove: ";	cin >> ip;
-				bt.remove(ip); break;
+				avl.remove(ip); break;
 			default: cout << "Invalid input" << endl;
 		}
 	} while (num != 0);
