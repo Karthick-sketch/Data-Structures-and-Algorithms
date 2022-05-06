@@ -6,8 +6,6 @@ int LinearSearch(int arr[], int size, int val) {
 		if (val == arr[indx])
 			isThere = true;
 	}
-	if (isThere)
-		return indx-1;
-	else
-		return -1;
+
+	return (isThere ? indx-1 : -1);
 }
