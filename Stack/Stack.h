@@ -3,21 +3,19 @@ class Stack{
 
 	public:
 
-	Stack() {	top = NULL;	}
+	Stack() { top = NULL; }
 
 	void Push(int vl) {
 		Node *node = new Node(vl);
-		if (top == NULL)	top = node;
-		else {
-			Node* crnd = top;
-			node->setLink(crnd);
-			top = node;
+		if (top != NULL) {
+			node->setLink(top);
 		}
+		top = node;
 		std::cout << "Pushed" << std::endl;
 	}
 
 	void Pop() {
-		if (top == NULL)	std::cout << "Stack is empty" << std::endl;
+		if (top == NULL) std::cout << "Stack is empty" << std::endl;
 		else {
 			Node* crnd = top;
 			top = top->getLink();
