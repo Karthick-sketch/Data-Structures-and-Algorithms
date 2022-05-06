@@ -1,17 +1,16 @@
-class Node {
-	int data;
-	Node *left, *right;
+class TreeNode {
+	int data; TreeNode *left, *right;
 
 	public:
 
-	Node(int val) {	data = val;	left = NULL;	right = NULL;	}
+	TreeNode(int val) { data = val; left = NULL; right = NULL; }
 
-	void setData(int val) {  data = val; }
-	int getData() { return data;  }
+	void setData(int val) { data = val; }
+	int getData() { return data; }
 
-	void setLeft(Node* link) {  left = link;  }
-	Node* getLeft() { return left;  }
+	void setLeft(TreeNode* link) { left = link; }
+	TreeNode* getLeft() { return left; }
 
-	void setRight(Node* link) {  right = link;  }
-	Node* getRight() { return right;  }
+	void setRight(TreeNode* link) { right = link; }
+	TreeNode* getRight() { return right; }
 };

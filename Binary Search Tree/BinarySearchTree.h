@@ -1,209 +1,133 @@
-class BinaryTree {
-	Node *root = NULL;
+class BinarySearchTree {
+    private:
 
-	void Print(Node* temp) {
+    void print(TreeNode* temp) {
 		if (temp->getLeft() != NULL)
-			Print(temp->getLeft());
-		std::cout << temp->getData() << ", ";
+			print(temp->getLeft());
+
+		std::cout << temp->getData() << ' ';
+
 		if (temp->getRight() != NULL)
-			Print(temp->getRight());
+			print(temp->getRight());
 	}
 
-	public:
+	TreeNode* clear(TreeNode* temp) {
+		if (temp->getLeft() != NULL)
+			temp->setLeft(clear(temp->getLeft()));
 
-	BinaryTree() {	root = NULL;  }
+		if (temp->getRight() != NULL)
+			temp->setRight(clear(temp->getRight()));
 
-	void Insert(int val) {
-		Node* node = new Node(val);
+		delete temp;
 
-		if (root == NULL)
-			root = node;
-		else {
-			Node* leaf = root;
-			bool leafexists = true;
-			while (leafexists) {
-				if (val < leaf->getData()) {
-					if (leaf->getLeft() == NULL) {
-						leaf->setLeft(node);	// if leaf->left is not exists leaf's left asigns a new node
-						leafexists = false;
+		return NULL;
+	}
+
+    protected:
+
+    TreeNode* root;
+
+    public:
+
+    BinarySearchTree() { root = NULL; }
+
+    bool add(int val) {
+        bool exists = !search(val);
+		if (exists) {
+			TreeNode* node = new TreeNode(val);
+			if (root == NULL) root = node;
+			else {
+				TreeNode* temp = root;
+				while (true) {
+					if (val < temp->getData()) {
+						if (temp->getLeft() == NULL) {
+							temp->setLeft(node);
+							break;
+						} else temp = temp->getLeft();
+					} else {
+						if (temp->getRight() == NULL) {
+							temp->setRight(node);
+							break;
+						} else temp = temp->getRight();
 					}
-					else	leaf = leaf->getLeft(); // if leaf->left is exists leaf traverse to left
-				}
-				else {
-					if (leaf->getRight() == NULL) {
-						leaf->setRight(node);	// if leaf->right is not exists leaf's right asigns a new node
-						leafexists = false;
-					}
-					else	leaf = leaf->getRight(); // if leaf->right is exists leaf traverse to right
 				}
 			}
 		}
+
+        return exists;
 	}
 
-	void Delete(int val) {
-		Node *child = root, *parent = NULL;
-		bool exists = true;
+	bool search(int val) {
+		TreeNode *temp = root;
+		bool exists = false;
+
+        while (temp != NULL && !exists) {
+            if (temp->getData() == val) exists = true;
+            else if (val < temp->getData()) temp = temp->getLeft();
+            else temp = temp->getRight();
+        }
+
+		return exists;
+	}
+
+    // in this function temp goes to last left child in the tree, then it returns the value
+	int maximum() {
+		TreeNode* temp = root;
+		while (temp->getRight() != NULL) {
+			temp = temp->getRight();
+		}
+		return temp->getData();
+	}
+
+    // in this function temp goes to last right child in the tree, then it returns the value
+	int minimum() {
+		TreeNode* temp = root;
+		while (temp->getLeft() != NULL) {
+			temp = temp->getLeft();
+		}
+		return temp->getData();
+	}
+
+	// remove value from a tree
+	bool remove(int val) {
+		TreeNode *child = root, *parent = NULL;
+		bool exists = search(val);
+
 		while (exists) {
-			if (val == child->getData()) {
-				if (child->getLeft() != NULL) {
-					Node* temp1 = child->getLeft();
-					Node* temp2 = temp1;
-					while (temp1->getRight() != NULL) {
-						temp2 = temp1;
-						temp1 = temp1->getRight();
-					}
-					if (temp1->getLeft() != NULL) {
-						if (temp1 != temp2)	temp2->setRight(temp1->getLeft());
-						else {
-							temp1->setRight(child->getRight());
-							if (child == root) {
-								root = temp1;	delete child;
-								std::cout << val << " is deleted" << std::endl;	break;
-							}
-							else {
-								parent->setRight(temp1);
-								delete child;
-								std::cout << val << " is deleted" << std::endl;	break;
-							}
-						}
-					}
-					else	temp2->setRight(NULL);
-					child->setData(temp1->getData());
-					if (child->getLeft() == temp1)	child->setLeft(NULL);
-					delete temp1;  
+			if (child->getData() == val) {
+				if (child->getLeft() != NULL && child->getRight() != NULL) {
+					TreeNode* left = child->getLeft();
+					TreeNode* right = child->getRight();
+					if (child == root) root = right;
+					else if (parent->getLeft() == child) parent->setLeft(right);
+					else parent->setRight(right);
+					while (right->getLeft() != NULL) right = right->getLeft();
+					right->setLeft(left);
+				} else {
+					TreeNode* setTreeNode = (child->getLeft() != NULL) ? child->getLeft() : child->getRight();
+					if (child == root) root = setTreeNode;
+					else if (parent->getLeft() == child) parent->setLeft(setTreeNode);
+					else parent->setRight(setTreeNode);
 				}
-				else if (child->getRight() != NULL) {
-					if (child == root)	root = child->getRight();
-					else if (parent->getRight() == child)	parent->setRight((child->getLeft() != NULL) ? child->getLeft() : child->getRight());
-					else	parent->setLeft((child->getLeft() != NULL) ? child->getLeft() : child->getRight());
-					delete child;
-				}
-				else if (child == root) {	root = NULL;	delete child;	}
-				else {
-					(parent->getRight() == child) ? parent->setRight(NULL) : parent->setLeft(NULL);
-					delete child;
-				}
-				std::cout << val << " is deleted" << std::endl;
-				exists = false;
-			}
-			else if (val < child->getData()) {
-				if (child->getLeft() == NULL) {
-					exists = false;
-					std::cout << val << " is not in the tree" << std::endl;
-				}
-				else {
-					parent = child;
-					child = child->getLeft();
-				}
-			}
-			else {
-				if (child->getRight() == NULL) {
-					exists = false;
-					std::cout << val << " is not in the tree" << std::endl;
-				}
-				else {
-					parent = child;
-					child = child->getRight();
-				}
+				delete child; break;
+			} else {
+				parent = child;
+				child = (val < child->getData()) ? child->getLeft() : child->getRight();
 			}
 		}
+
+		return exists;
 	}
 
-	Node* Search(int val) {
-		Node *tmp = root;
-		bool isThere = true;
-		Node* address = NULL; // if user input is not in the true it returns NULL
-
-		while (isThere) {
-			if (tmp != NULL && tmp->getData() == val) { // if user input is equal to tmp.data tmp's key value assignnd to ky
-				isThere = false;
-				address = tmp;
-			}
-			else if (val < tmp->getData()) {
-				if (tmp->getLeft() == NULL)	isThere = false;
-				else	tmp = tmp->getLeft();
-			}
-			else {
-				if (tmp->getRight() == NULL)	isThere = false;
-				else	tmp = tmp->getRight();
-			}
-		}
-		return address;
+	// print all values from a tree
+	void print() {
+        std::cout << "[ ";
+		if (root != NULL) print(root);
+        std::cout << "]" << std::endl;
 	}
 
-	int Maximum() { // in this function leaf goes to last left child in the tree, then it returns the minimum value
-		Node* leaf = root;
-		bool run = true;
-		while (run) {
-			if (leaf->getRight() == NULL)	run = false;
-			else	leaf = leaf->getRight();
-		}
-		return leaf->getData();
-	}
+	// clear all values from a tree
+	void clear() { if (root != NULL) root = clear(root); }
 
-	int Minimum() { // in this function leaf goes to last right child in the tree, then it returns the maximum value
-		Node* leaf = root;
-		bool run = true;
-		while (run) {
-			if (leaf->getLeft() == NULL)	run = false;
-			else	leaf = leaf->getLeft();
-		}
-		return leaf->getData();
-	}
-
-	void Print() {
-		if (root != NULL) {
-			std::cout << '[';
-			Print(root);
-			std::cout << "\b\b]" << std::endl;
-		}
-		else	std::cout << "[]" << std::endl;
-	}
-
-	~BinaryTree() {
-		if (root != NULL) {
-			Node *child, *parent;
-			bool left = true, first = true, second = false;
-	
-			while (first) {
-				child = root;
-				parent = NULL;
-				if (root->getLeft() == NULL && root->getRight() == NULL) {
-					delete root;	// if root's all children are null, root will be deletnd
-					first = false;
-				}
-				else	second = true;
-	
-				while(second) {
-					if (child->getLeft() == NULL)	left = false; // left is false, then child goes to right
-					else {
-						parent = child;
-						child = child->getLeft();
-					}
-	
-					if (!left) {
-						if (child->getRight() == NULL)	left = true; // if child->right is not exists left will become true, because we have to check next leaf
-						else {
-							parent = child;
-							child = child->getRight();
-						}
-					}
-	
-					if (child->getLeft() == NULL && child->getRight() == NULL) {
-						if (parent->getLeft() == child) { // parent->left is equal to child, child will be deletnd and parent->left becomes null
-							delete child;
-							parent->setLeft(NULL);
-						}
-						else { // child will be deletnd and parent->right becomes null
-							delete child;
-							parent->setRight(NULL);
-						}
-						second = false;
-					}
-				}
-				left = true;
-			}
-		}
-		std::cout << "Done" << std::endl;
-	}
+	~BinarySearchTree() { clear(); }
 };
