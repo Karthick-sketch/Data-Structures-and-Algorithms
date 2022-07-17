@@ -5,7 +5,7 @@ class Stack{
 
 	Stack() { top = NULL; }
 
-	void Push(int vl) {
+	void push(int vl) {
 		Node *node = new Node(vl);
 		if (top != NULL) {
 			node->setLink(top);
@@ -14,7 +14,7 @@ class Stack{
 		std::cout << "Pushed" << std::endl;
 	}
 
-	void Pop() {
+	void pop() {
 		if (top == NULL) std::cout << "Stack is empty" << std::endl;
 		else {
 			Node* crnd = top;
@@ -25,7 +25,7 @@ class Stack{
 		}
 	}
 
-	~Stack() {
+	void clear() {
 		if (top != NULL) {
 			Node* crnd = NULL;
 			while (top != NULL) {
@@ -34,6 +34,7 @@ class Stack{
 				delete crnd;
 			}
 		}
-		std::cout << "Done";
 	}
+
+	~Stack() { clear(); }
 };
