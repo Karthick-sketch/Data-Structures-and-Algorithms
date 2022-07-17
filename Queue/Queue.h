@@ -5,7 +5,7 @@ class Queue {
 
 	Queue() { front = NULL; rear = NULL; }
 
-	void Enqueue(int vl) {
+	void enqueue(int vl) {
 		Node *node = new Node(vl);
 		if (front == NULL) front = node;
 		else rear->setLink(node);
@@ -13,7 +13,7 @@ class Queue {
 		std::cout << "Enqueued" << std::endl;
 	}
 
-	void Dequeue() {
+	void dequeue() {
 		if (front == NULL) {
 			std::cout << "Queue is empty" << std::endl;
 			rear = NULL;
@@ -26,7 +26,7 @@ class Queue {
 		}
 	}
 
-	~Queue() {
+	void clear() {
 		Node* temp = NULL;
 		while (front != NULL) {
 			temp = front;
@@ -34,6 +34,7 @@ class Queue {
 			delete temp;
 		}
 		rear = NULL;
-		std::cout << "Done";
 	}
+
+	~Queue() { clear(); }
 };
