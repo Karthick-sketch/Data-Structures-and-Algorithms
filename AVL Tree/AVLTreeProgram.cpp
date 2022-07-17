@@ -20,7 +20,7 @@ int main() {
 		cin >> num;
 
 		switch(num) {
-			case 0: break;
+			case 0: avl.clear(); break;
 			case 1: cout << "Enter number of values to insert: "; cin >> ip;
 				for (int i = 0, val;i < ip;i++) { cin >> val; avl.add(val); }
 				cout << "Inserted" << endl; break;
@@ -32,15 +32,16 @@ int main() {
 					avl.add(val);
 				}
 				cout << "Inserted" << endl; break;
-			case 3:	cout << "Enter the number: ";	cin >> ip;
-				if (avl.search(ip)) cout << ip << " is not in the tree" << endl;
-				else cout << ip << " is exists in the tree" << endl;
+			case 3:	cout << "Enter the number: "; cin >> ip;
+				if (avl.search(ip)) cout << ip << " is exists in the tree" << endl;
+				else cout << ip << " is not in the tree" << endl;
 				break;
 			case 4: cout << "Largest number: " << avl.maximum() << endl; break;
 			case 5: cout << "Lowest number: " << avl.minimum() << endl; break;
 			case 6: avl.print(); break;
-			case 7: cout << "Enter the number to remove: ";	cin >> ip;
+			case 7: cout << "Enter the number to remove: "; cin >> ip;
 				avl.remove(ip); break;
+			case 8: avl.clear(); cout << "Tree has been cleared" << endl; break;
 			default: cout << "Invalid input" << endl;
 		}
 	} while (num != 0);

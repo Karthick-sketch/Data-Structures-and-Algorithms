@@ -39,42 +39,44 @@ class AVLTree : public BinarySearchTree {
 			selfBalancing(child->getRight(), child);
 
 		int ht = findBalanceFactor(child);
-		TreeNode *temp = NULL, *tmp = NULL;
+		TreeNode *temp = NULL, *tmp1 = NULL, *tmp2 = NULL;
 
 		if (ht < -1) {
 			temp = child->getRight();
-			if (findBalanceFactor(temp) == 1) {	// RL Rotation
-				tmp = temp->getLeft();
-				TreeNode* tmp2 = tmp->getRight();
-				tmp->setRight(temp);
+			if (findBalanceFactor(temp) == 1) {
+				tmp1 = temp->getLeft();
+				tmp2 = tmp1->getRight();
+				// RL Rotation
+				tmp1->setRight(temp);
 				temp->setLeft(tmp2);
-				child->setRight(tmp);
+				child->setRight(tmp1);
 
-				temp = tmp;
+				temp = tmp1;
 			}
 			// RR Rotation
-			tmp = temp->getLeft();
+			tmp1 = temp->getLeft();
 			temp->setLeft(child);
-			child->setRight(tmp);
+			child->setRight(tmp1);
 		} else if (ht > 1) {
 			temp = child->getLeft();
-			if (findBalanceFactor(temp) == -1) { // LR Rotation
-				TreeNode* tmp = temp->getRight();
-				TreeNode* tmp2 = tmp->getLeft();
-				tmp->setLeft(temp);
+			if (findBalanceFactor(temp) == -1) {
+				tmp1 = temp->getRight();
+				tmp2 = tmp1->getLeft();
+				// LR Rotation
+				tmp1->setLeft(temp);
 				temp->setRight(tmp2);
-				child->setLeft(tmp);
+				child->setLeft(tmp1);
 
-				temp = tmp;
+				temp = tmp1;
 			}
 			// LL Rotation
-			tmp = temp->getRight();
+			tmp1 = temp->getRight();
 			temp->setRight(child);
-			child->setLeft(tmp);
+			child->setLeft(tmp1);
 		}
 
 		if (ht < -1 || ht > 1) {
-			if (child == root)	root = temp;
+			if (child == root) root = temp;
 			else if (parent->getLeft() == child) parent->setLeft(temp);
 			else parent->setRight(temp);
 		}
