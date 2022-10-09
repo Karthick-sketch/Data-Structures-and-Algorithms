@@ -8,6 +8,17 @@
 
 using namespace std;
 
+bool verifySorted(int arr[]) {
+	int size = sizeof(arr)/sizeof(int);
+	for (int i = 0;i < size-1;i++) {
+		if (arr[i] < arr[i+1]) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 int main() {
 	srand(time(0));
 
@@ -37,12 +48,14 @@ int main() {
 	cout << "Select the type to sort the array: ";
 
 	cin >> ip;
-	switch(ip) {
-		case 1: BubbleSort(arr, size);  break;
-		case 2: SelectionSort(arr, size); break;
-		case 3: InsertionSort(arr, size); break;
-		case 4: MergeSort(arr, 0, size-1); break;
-		case 5: QuickSort(arr, 0, size); break;
+	if (!verifySorted(arr)) {
+		switch(ip) {
+			case 1: BubbleSort(arr, size); break;
+			case 2: SelectionSort(arr, size); break;
+			case 3: InsertionSort(arr, size); break;
+			case 4: MergeSort(arr, 0, size-1); break;
+			case 5: QuickSort(arr, 0, size); break;
+		}
 	}
 
 	cout << "Sorted List: [";
