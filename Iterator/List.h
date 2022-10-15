@@ -87,13 +87,12 @@ class List {
 	// returns index number from the given value
 	int index(T val) {
 		int index_number = 0;
-		Node<T> *ptr = head;
-		while (ptr != NULL && ptr->getData() != val) {
+		Iterator<T> it = iterator();
+        while (it.hasNext() && it.next() != val) {
 			index_number++;
-			ptr = ptr->getNextNode();
-		}
+        }
 
-		if (ptr == NULL) {
+		if (!it.hasNext()) {
 			exitProgram("Unable to find the value ", val);
 		}
 		return index_number;
@@ -117,13 +116,13 @@ class List {
 
 	// search the given value from the list
 	bool search(T val) {
-		bool exists = false;
-		Node<T> *temp = head;
-		while (temp != NULL && !exists) {
-			if (temp->getData() == val) exists = true;
-			else temp = temp->getNextNode();
-		}
-		return exists;
+		Iterator<T> it = iterator();
+        while (it.hasNext()) {
+            if (it.next() == val) {
+				return true;
+			}
+        }
+		return false;
 	}
 
 	// remove a value from the given index number from the list
