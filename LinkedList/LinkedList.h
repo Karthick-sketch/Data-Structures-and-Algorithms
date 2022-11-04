@@ -19,7 +19,6 @@ template <typename T>
 class LinkedList {
 private:
 	Node<T> *head, *tail;
-	Node<T> *current_node, *previous_node;
 
 	void exitProgram() { clear(); exit(0); }
 
@@ -42,11 +41,30 @@ private:
 		} else exitProgram("List is empty");
 		return val;
 	}
+
+	void multipleArguments(T val) { push(val); }
+
+	template <typename... Args>
+	void multipleArguments(T val, Args... args) {
+        multipleArguments(val);
+		multipleArguments(args...);
+	}
 public:
 	LinkedList() {
 		head = tail = NULL;
-		current_node = previous_node = NULL;
 	}
+
+	LinkedList(T val) {
+		head = tail = NULL;
+        multipleArguments(val);
+    }
+
+	template <typename... Args>
+	LinkedList(T val, Args... args) {
+		head = tail = NULL;
+        multipleArguments(val);
+        multipleArguments(args...);
+    }
 
 	T operator [] (int index_number) { return get(index_number); }
 
@@ -144,6 +162,18 @@ public:
 			else temp = temp->getLink();
 		}
 		return exists;
+	}
+
+	bool equals(LinkedList<T> *list2) {
+		if (length() == list2->length()) {
+			for (int i = 0; i < length(); i++) {
+				if(get(i) != list2->get(i)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
 	}
 
 	// remove a value from the given index number from the list
