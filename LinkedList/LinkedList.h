@@ -122,19 +122,31 @@ public:
 	// remove the last item from the list
 	T pop() { return removeItem(tail); }
 
+	// search the given value from the list
+	bool contains(T val) {
+		bool exists = false;
+		Node<T> *temp = head;
+		while (temp != NULL && !exists) {
+			if (temp->getData() == val) exists = true;
+			else temp = temp->getLink();
+		}
+		return exists;
+	}
+
 	// returns index number from the given value
 	int index(T val) {
-		int index_number = 0;
-		Node<T> *ptr = head;
-		while (ptr != NULL && ptr->getData() != val) {
-			index_number++;
-			ptr = ptr->getLink();
-		}
-
-		if (ptr == NULL) {
+		if (contains(val)) {
+			int index_number = 0;
+			Node<T> *ptr = head;
+			while (ptr != NULL && ptr->getData() != val) {
+				index_number++;
+				ptr = ptr->getLink();
+			}
+			return index_number;
+		} else {
 			exitProgram("Unable to find the value ", val);
 		}
-		return index_number;
+		return -1;
 	}
 
 	// adds a value after the given index number
@@ -153,17 +165,6 @@ public:
 		}
 	}
 
-	// search the given value from the list
-	bool contains(T val) {
-		bool exists = false;
-		Node<T> *temp = head;
-		while (temp != NULL && !exists) {
-			if (temp->getData() == val) exists = true;
-			else temp = temp->getLink();
-		}
-		return exists;
-	}
-
 	bool equals(LinkedList<T> *list2) {
 		if (length() == list2->length()) {
 			for (int i = 0; i < length(); i++) {
@@ -178,7 +179,7 @@ public:
 
 	// remove a value from the given index number from the list
 	void removeAt(int pos) {
-		if (pos >= 0 && pos < length()) {
+		if (pos >= 0 && pos < length() && contains(pos)) {
 			Node<T> *current_node = head, *previous_node = NULL;
 			for (int i = 0;i != pos;i++) {
 				previous_node = current_node;
