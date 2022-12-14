@@ -128,7 +128,7 @@ public:
 		Node<T> *temp = head;
 		while (temp != NULL && !exists) {
 			if (temp->getData() == val) exists = true;
-			else temp = temp->getLink();
+			else temp = temp->getNextNode();
 		}
 		return exists;
 	}
@@ -140,7 +140,7 @@ public:
 			Node<T> *ptr = head;
 			while (ptr != NULL && ptr->getData() != val) {
 				index_number++;
-				ptr = ptr->getLink();
+				ptr = ptr->getNextNode();
 			}
 			return index_number;
 		} else {
@@ -179,9 +179,9 @@ public:
 
 	// remove a value from the given index number from the list
 	void removeAt(int pos) {
-		if (pos >= 0 && pos < length() && contains(pos)) {
+		if (pos >= 0 && pos < length()) {
 			Node<T> *current_node = head, *previous_node = NULL;
-			for (int i = 0;i != pos;i++) {
+			for (int i = 0;i < pos;i++) {
 				previous_node = current_node;
 				current_node = current_node->getNextNode();
 			}

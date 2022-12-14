@@ -1,9 +1,9 @@
-template <typename K, typename V> class HashNode {
-    HashNode* next;
+template <typename K, typename V>
+class HashNode {
+private:
+    HashNode* next_node;
     K key; V value;
-
-    public:
-
+public:
     HashNode(K key, V value) {
         next = NULL;
         this->key = key;
@@ -16,12 +16,13 @@ template <typename K, typename V> class HashNode {
     void setValue(V value) { this->value = value; }
     V getValue() { return value; }
 
-    void setLink(HashNode* link) { next = link; }
-	HashNode* getLink() { return next; }
+    void setNextNode(HashNode* link) { next_node = link; }
+	HashNode* getNextNode() { return next_node; }
 };
 
 
-template <typename K, typename V> class Hash {
+template <typename K, typename V>
+class Hash {
     HashNode<K, V> *head, *tail;
 
     void exitProgram(K key) {
@@ -31,12 +32,14 @@ template <typename K, typename V> class Hash {
 
     public:
 
-    Hash() { head = NULL; tail = NULL; }
+    Hash() { head = tail = NULL; }
 
     int length() {
         int len = 0;
-        for (HashNode<K, V> *ptr = head;ptr != NULL;len++) {
+        HashNode<K, V> *ptr = head;
+        while (ptr != NULL) {
             ptr = ptr->getLink();
+            len++;
         }
 
         return len;
@@ -49,7 +52,8 @@ template <typename K, typename V> class Hash {
         // replace the value if the key is exists
         while (ptr != NULL) {
             if (ptr->getKey() == key) {
-                ptr->setValue(value); break;
+                ptr->setValue(value);
+                break;
             }
             ptr = ptr->getLink();
         }
@@ -110,7 +114,7 @@ template <typename K, typename V> class Hash {
 				head = head->getLink();
 				delete ptr;
 			}
-			head = NULL; tail = NULL;
+			head = tail = NULL;
 		}
 	}
 
