@@ -1,14 +1,18 @@
 class Queue {
 	Node *front, *rear;
 
-	public:
-
-	Queue() { front = NULL; rear = NULL; }
+public:
+	Queue() {
+		front = rear = NULL;
+	}
 
 	void enqueue(int vl) {
 		Node *node = new Node(vl);
-		if (front == NULL) front = node;
-		else rear->setLink(node);
+		if (front == NULL) {
+			front = node;
+		} else {
+			rear->setLink(node);
+		}
 		rear = node;
 		std::cout << "Enqueued" << std::endl;
 	}
@@ -24,6 +28,16 @@ class Queue {
 			delete temp;
 			std::cout << "Dequeued" << std::endl;
 		}
+	}	
+
+	void print() {
+		Node* temp = front;
+		std::cout << "[ ";
+		while (temp != NULL) {
+			std::cout << temp->getData() << ' ';
+			temp = temp->getLink();
+		}
+		std::cout << ']' << std::endl;
 	}
 
 	void clear() {
@@ -36,5 +50,7 @@ class Queue {
 		rear = NULL;
 	}
 
-	~Queue() { clear(); }
+	~Queue() {
+		clear();
+	}
 };
