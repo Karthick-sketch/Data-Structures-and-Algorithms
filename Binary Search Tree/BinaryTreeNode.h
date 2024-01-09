@@ -1,16 +1,35 @@
-class TreeNode {
-	int data; TreeNode *left, *right;
+class BinaryTreeNode {
+	int data;
+	BinaryTreeNode *left, *right;
 
 	public:
 
-	TreeNode(int val) { data = val; left = NULL; right = NULL; }
+	BinaryTreeNode(int val) {
+		data = val;
+		left = right = NULL;
+	}
 
-	void setData(int val) { data = val; }
-	int getData() { return data; }
+	void setData(int val) {
+		data = val;
+	}
 
-	void setLeft(TreeNode* link) { left = link; }
-	TreeNode* getLeft() { return left; }
+	int getData() {
+		return data;
+	}
 
-	void setRight(TreeNode* link) { right = link; }
-	TreeNode* getRight() { return right; }
+	void setLeft(BinaryTreeNode* link) {
+		left = link;
+	}
+
+	BinaryTreeNode* getLeft() {
+		return left;
+	}
+
+	void setRight(BinaryTreeNode* link) {
+		right = link;
+	}
+
+	BinaryTreeNode* getRight() {
+		return right;
+	}
 };
