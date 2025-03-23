@@ -3,37 +3,43 @@ class Queue {
 
 	public:
 
-	Queue() { front = NULL; rear = NULL; }
+	Queue() {
+    front = NULL;
+    rear = NULL;
+  }
 
-	void Enqueue(int vl) {
-		Node *node = new Node(vl);
-		if (front == NULL) front = node;
-		else rear->setLink(node);
-		rear = node;
-		std::cout << "Enqueued" << std::endl;
-	}
-
-	void Dequeue() {
+	void enqueue(int value) {
+		Node *node = new Node(value);
 		if (front == NULL) {
-			std::cout << "Queue is empty" << std::endl;
-			rear = NULL;
-		} else {
-			Node* temp = front;
-			front = front->getLink();
-			std::cout << temp->getData() << std::endl;
-			delete temp;
-			std::cout << "Dequeued" << std::endl;
-		}
+      front = node;
+    } else {
+      rear->setNext(node);
+    }
+		rear = node;
 	}
 
-	~Queue() {
-		Node* temp = NULL;
-		while (front != NULL) {
-			temp = front;
-			front = front->getLink();
+	int dequeue() {
+    int value = 0;
+		if (front != NULL) {
+			Node* temp = front;
+			front = front->getNext();
+			value = temp->getValue();
 			delete temp;
+		}
+    return value;
+	}
+
+  void clear() {
+    Node* temp = front;
+		while (temp != NULL) {
+			front = front->getNext();
+			delete temp;
+			temp = front;
 		}
 		rear = NULL;
-		std::cout << "Done";
+  }
+
+	~Queue() {
+		clear();
 	}
 };
