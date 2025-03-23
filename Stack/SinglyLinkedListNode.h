@@ -1,13 +1,27 @@
 class Node {
-	int data; Node *next;
+	int value;
+	Node *next;
 
 	public:
 
-	Node(int vl) { data = vl; next = NULL; }
+	Node(int value) {
+		this->value = value;
+		this->next = NULL;
+	}
 
-	void setData(int val) { data = val; }
-	int getData() { return data; }
+	void setValue(int value) {
+		this->value = value;
+	}
 
-	void setLink(Node* link) { next = link; }
-	Node* getLink() { return next; }
+	int getValue() {
+		return value;
+	}
+
+	void setNext(Node* next) {
+		this->next = next;
+	}
+
+	Node* getNext() {
+		return next;
+	}
 };

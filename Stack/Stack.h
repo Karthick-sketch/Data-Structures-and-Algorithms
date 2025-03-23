@@ -1,39 +1,41 @@
-class Stack{
+class Stack {
 	Node *top;
 
 	public:
 
-	Stack() { top = NULL; }
+	Stack() {
+		top = NULL;
+	}
 
-	void Push(int vl) {
-		Node *node = new Node(vl);
+	void push(int value) {
+		Node *node = new Node(value);
 		if (top != NULL) {
-			node->setLink(top);
+			node->setNext(top);
 		}
 		top = node;
-		std::cout << "Pushed" << std::endl;
 	}
 
-	void Pop() {
-		if (top == NULL) std::cout << "Stack is empty" << std::endl;
-		else {
-			Node* crnd = top;
-			top = top->getLink();
-			std::cout << crnd->getData();
-			delete crnd;
-			std::cout << " is Popped" << std::endl;
+	int pop() {
+    int value = 0;
+		if (top != NULL) {
+			Node* currentNode = top;
+			top = top->getNext();
+			value = currentNode->getValue();
+			delete currentNode;
 		}
+    return value;
 	}
+
+  void clear() {
+    Node* currentNode = top;
+    while (currentNode != NULL) {
+      top = top->getNext();
+      delete currentNode;
+      currentNode = top;
+    }
+  }
 
 	~Stack() {
-		if (top != NULL) {
-			Node* crnd = NULL;
-			while (top != NULL) {
-				crnd = top;
-				top = top->getLink();
-				delete crnd;
-			}
-		}
-		std::cout << "Done";
+		clear();
 	}
 };
