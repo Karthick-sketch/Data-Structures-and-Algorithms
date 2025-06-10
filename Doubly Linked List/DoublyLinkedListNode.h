@@ -1,16 +1,35 @@
 class Node {
-	int data; Node *next, *previous;
+  int data;
+  Node *next, *previous;
 
-	public:
+public:
+  Node(int data) {
+    this->data = data;
+    this->next = NULL;
+    this->previous = NULL;
+  }
 
-	Node(int val) { data = val; next = NULL; previous = NULL; }
+  void setData(int data) {
+    this->data = data;
+  }
 
-	void setData(int val) { data = val; }
-	int getData() { return data; }
+  int getData() {
+    return data;
+  }
 
-	void setNext(Node* link) { next = link; }
-	Node* getNext() { return next; }
+  void setNext(Node* link) {
+    next = link;
+  }
 
-	void setPrevious(Node* link) { previous = link; }
-	Node* getPrevious() { return previous; }
+  Node* getNext() {
+    return next;
+  }
+
+  void setPrevious(Node* link) {
+    previous = link;
+  }
+
+  Node* getPrevious() {
+    return previous;
+  }
 };
