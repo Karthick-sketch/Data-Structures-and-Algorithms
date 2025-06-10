@@ -1,35 +1,36 @@
 class BinaryTreeNode {
-	int data;
-	BinaryTreeNode *left, *right;
+  int data;
+  BinaryTreeNode *left, *right;
 
-	public:
+  public:
 
-	BinaryTreeNode(int val) {
-		data = val;
-		left = right = NULL;
-	}
+  BinaryTreeNode(int data) {
+    this->data = data;
+    this->left = NULL;
+    this->right = NULL;
+  }
 
-	void setData(int val) {
-		data = val;
-	}
+  void setData(int data) {
+    this->data = data;
+  }
 
-	int getData() {
-		return data;
-	}
+  int getData() {
+    return data;
+  }
 
-	void setLeft(BinaryTreeNode* link) {
-		left = link;
-	}
+  void setLeft(BinaryTreeNode* link) {
+    left = link;
+  }
 
-	BinaryTreeNode* getLeft() {
-		return left;
-	}
+  BinaryTreeNode* getLeft() {
+    return left;
+  }
 
-	void setRight(BinaryTreeNode* link) {
-		right = link;
-	}
+  void setRight(BinaryTreeNode* link) {
+    right = link;
+  }
 
-	BinaryTreeNode* getRight() {
-		return right;
-	}
+  BinaryTreeNode* getRight() {
+    return right;
+  }
 };

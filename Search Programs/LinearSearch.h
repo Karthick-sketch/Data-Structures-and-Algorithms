@@ -1,11 +1,8 @@
-int LinearSearch(int arr[], int size, int val) {
-	bool isThere = false;
-	int indx = 0;
-		
-	for (;indx < size && !isThere;indx++) {
-		if (val == arr[indx])
-			isThere = true;
-	}
-
-	return (isThere ? indx-1 : -1);
+int linearSearch(int arr[], int size, int val) {
+  for (int i = 0; i < size; i++) {
+    if (val == arr[i]) {
+      return index;
+    }
+  }
+  return -1;
 }
