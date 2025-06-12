@@ -46,19 +46,18 @@ void remove() {
 
 int main() {
   int from, to;
-  
-  print();
-  char input; cin >> input;
-  while (input != 'e') {
-    switch (input) {
+  char ip;
+
+  do {
+    print();
+    cin >> ip;
+    switch (ip) {
       case 'w': write(); break;
       case 'x': cut(); break;
       case 'c': copy(); break;
       case 'r': remove(); break;
     }
-    print();
-    cin >> input;
-  }
+  } while (ip != 'e');
 
   return 0;
 }
