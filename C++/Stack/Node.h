@@ -2,7 +2,7 @@ class Node {
   int value;
   Node *next;
 
-  public:
+public:
   Node(int value) {
     this->value = value;
     this->next = NULL;

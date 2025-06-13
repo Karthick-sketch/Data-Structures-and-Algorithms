@@ -9,35 +9,35 @@ void insert(LinkedList* list) {
   int ip, src;  cin >> ip;
   switch(ip) {
     case 0: break;
-    case 1:	cout << "Enter a value: ";	cin >> ip;
+    case 1:	cout << "Enter a value: "; cin >> ip;
       list->insertAtFront(ip);
       cout << "Done" << endl;
       break;
-    case 2:	cout << "Enter a value: ";	cin >> ip;
+    case 2:	cout << "Enter a value: "; cin >> ip;
       list->insertAtEnd(ip);
       cout << "Done" << endl;
       break;
-    case 3:	cout << "Enter a node value: ";	cin >> src;
-      cout << "Enter a value: ";	cin >> ip;
+    case 3:	cout << "Enter a node value: "; cin >> src;
+      cout << "Enter a value: "; cin >> ip;
       list->insertAfterValue(ip, src);
       cout << "Done" << endl;
       break;
-    case 4:	cout << "Enter a node value: ";	cin >> src;
-      cout << "Enter a value: ";	cin >> ip;
+    case 4:	cout << "Enter a node value: "; cin >> src;
+      cout << "Enter a value: "; cin >> ip;
       list->insertBeforeValue(ip, src);
       cout << "Done" << endl;
       break;
-    case 5:	cout << "Enter position number: ";	cin >> src;
-      cout << "Enter a value: ";	cin >> ip;
+    case 5:	cout << "Enter position number: "; cin >> src;
+      cout << "Enter a value: "; cin >> ip;
       list->insertAfterPosition(ip, src);
       cout << "Done" << endl;
       break;
-    case 6:	cout << "Enter position number: ";	cin >> src;
-      cout << "Enter a value: ";	cin >> ip;
+    case 6:	cout << "Enter position number: "; cin >> src;
+      cout << "Enter a value: "; cin >> ip;
       list->insertBeforePosition(ip, src);
       cout << "Done" << endl;
       break;
-    case 7:	cout << "Enter the number of values: ";	cin >> ip;
+    case 7:	cout << "Enter the number of values: "; cin >> ip;
       for (int i = 0; i < ip; i++) {
         list->insertAtEnd(rand()%100);
       }
@@ -66,7 +66,7 @@ int main() {
           cout << ip << "'s address is " << p << endl;
         }
         break;
-      case 3:	cout << "Enter the number to delete: ";	cin >> ip;
+      case 3:	cout << "Enter the number to delete: "; cin >> ip;
         list->remove(ip);
         break;
       case 4:	cout << "Length: " << list->length() << endl;

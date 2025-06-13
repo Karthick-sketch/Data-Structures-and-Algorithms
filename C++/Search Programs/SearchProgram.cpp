@@ -22,8 +22,9 @@ int main() {
       cin >> arr[i];
     }
   } else {
-    for (int i = 0;i < size;i++)
+    for (int i = 0;i < size;i++) {
       arr[i] = rand()%100;
+    }
   }
 
   bubbleSort(arr, size);
@@ -35,9 +36,9 @@ int main() {
 
   cout << "Select the number to search: ";
   int num; cin >> num;
-
+  int n = -1;
   cout << "1. Linear Search\n2. Jump Search\n3. Binary Search" << endl;
-  cin >> ip;  int n = -1;
+  cin >> ip;
   switch (ip) {
     case 1: n = linearSearch(arr, size, num); break;
     case 2: n = jumpSearch(arr, size, num); break;
