@@ -1,12 +1,12 @@
 template <typename K, typename V>
-class HashNode {
+class MapNode {
 private:
   K key;
   V value;
-  HashNode* next;
+  MapNode* next;
 
 public:
-  HashNode(K key, V value) {
+  MapNode(K key, V value) {
     this->key = key;
     this->value = value;
     this->next = NULL;
@@ -28,11 +28,11 @@ public:
     return value;
   }
 
-  void setNext(HashNode* next) {
+  void setNext(MapNode* next) {
     this->next = next;
   }
 
-  HashNode* getNext() {
+  MapNode* getNext() {
     return next;
   }
 };
