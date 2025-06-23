@@ -4,7 +4,7 @@ private:
     if (temp->getLeft() != NULL) {
       print(temp->getLeft());
     }
-    std::cout << temp->getData() << ' ';
+    std::cout << temp->getValue() << ' ';
     if (temp->getRight() != NULL) {
       print(temp->getRight());
     }
@@ -29,49 +29,43 @@ public:
     root = NULL;
   }
 
-  bool add(int val) {
-    bool exists = !search(val);
-    if (exists) {
-      BinaryTreeNode* node = new BinaryTreeNode(val);
-      if (root == NULL) {
-        root = node;
-      } else {
-        BinaryTreeNode* temp = root;
-        while (true) {
-          if (val < temp->getData()) {
-            if (temp->getLeft() == NULL) {
-              temp->setLeft(node);
-              break;
-            } else {
-              temp = temp->getLeft();
-            }
-          } else {
-            if (temp->getRight() == NULL) {
-              temp->setRight(node);
-              break;
-            } else {
-              temp = temp->getRight();
-            }
+  void insert(int value) {
+    if (root == NULL) {
+      root = new BinaryTreeNode(value);
+    } else {
+      BinaryTreeNode* node = root;
+      while (true) {
+        if (value < node->getValue()) {
+          if (node->getLeft() == NULL) {
+            node->setLeft(new BinaryTreeNode(value));
+            break;
           }
+          node = node->getLeft();
+        } else if (value > node->getValue()) {
+          if (node->getRight() == NULL) {
+            node->setRight(new BinaryTreeNode(value));
+            break;
+          }
+          node = node->getRight();
+        } else {
+          break;
         }
       }
     }
-    return exists;
   }
 
-  bool search(int val) {
-    BinaryTreeNode *temp = root;
-    bool exists = false;
-    while (temp != NULL && !exists) {
-      if (temp->getData() == val) {
-        exists = true;
-      } else if (val < temp->getData()) {
-        temp = temp->getLeft();
+  bool search(int value) {
+    BinaryTreeNode *node = root;
+    while (node != NULL) {
+      if (value == node->getValue()) {
+        return true;
+      } else if (value < node->getValue()) {
+        node = node->getLeft();
       } else {
-        temp = temp->getRight();
+        node = node->getRight();
       }
     }
-    return exists;
+    return false;
   }
 
   // in this function temp goes to last left child in the tree, then it returns the value
@@ -80,7 +74,7 @@ public:
     while (temp->getRight() != NULL) {
       temp = temp->getRight();
     }
-    return temp->getData();
+    return temp->getValue();
   }
 
   // in this function temp goes to last right child in the tree, then it returns the value
@@ -89,7 +83,7 @@ public:
     while (temp->getLeft() != NULL) {
       temp = temp->getLeft();
     }
-    return temp->getData();
+    return temp->getValue();
   }
 
   // remove value from a tree
@@ -97,7 +91,7 @@ public:
     BinaryTreeNode *child = root, *parent = NULL;
     bool exists = search(val);
     while (exists) {
-      if (child->getData() == val) {
+      if (child->getValue() == val) {
         if (child->getLeft() != NULL && child->getRight() != NULL) {
           BinaryTreeNode* left = child->getLeft();
           BinaryTreeNode* right = child->getRight();
@@ -126,7 +120,7 @@ public:
         break;
       } else {
         parent = child;
-        child = (val < child->getData()) ? child->getLeft() : child->getRight();
+        child = (val < child->getValue()) ? child->getLeft() : child->getRight();
       }
     }
     return exists;

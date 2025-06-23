@@ -14,27 +14,31 @@ int main() {
     cout << "\n0. Close\n1. Insert\n2. Insert random numbers" << endl;
     cout << "3. Search\n4. Largest number\n5. Lowest number" << endl;
     cout << "6. Print\n7. Remove\n8. Clear" << endl;
-    cout << "Please select the number: " << endl; cin >> num;
+    cout << "Please select the number: " << endl;
+    cin >> num;
 
     switch(num) {
       case 0: break;
-      case 1: cout << "Enter number of values to insert: "; cin >> ip;
-        for (int i = 0, val;i < ip;i++) {
+      case 1: cout << "Enter number of values to insert: ";
+        cin >> ip;
+        for (int i = 0, val; i < ip; i++) {
           cin >> val;
-          bt.add(val);
+          bt.insert(val);
         }
         cout << "Inserted" << endl;
         break;
-      case 2: cout << "Enter the number of values: "; cin >> ip;
+      case 2: cout << "Enter the number of values: ";
+        cin >> ip;
         cout << "[";
-        for (int i = 0, val;i < ip;i++) {
+        for (int i = 0, val; i < ip; i++) {
           val = rand()%1000;
           cout << val << ((i < ip-1) ? ", " : "]\n");
-          bt.add(val);
+          bt.insert(val);
         }
         cout << "Inserted" << endl;
         break;
-      case 3:	cout << "Enter the number: "; cin >> ip;
+      case 3:	cout << "Enter the number: ";
+        cin >> ip;
         if (bt.search(ip)) {
           cout << ip << " is exists in the tree" << endl;
         } else {
@@ -47,7 +51,8 @@ int main() {
         break;
       case 6: bt.print();
         break;
-      case 7: cout << "Enter the number to remove: ";	cin >> ip;
+      case 7: cout << "Enter the number to remove: ";
+        cin >> ip;
         bt.remove(ip);
         break;
       case 8: bt.clear();
