@@ -4,6 +4,7 @@ import binarytree.BinaryTreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class BinarySearchTree {
   protected BinaryTreeNode root;
@@ -60,19 +61,59 @@ public class BinarySearchTree {
 
   public List<Integer> get() {
     List<Integer> list = new ArrayList<>();
-    if (root != null) {
-      inorder(root, list);
+    Stack<BinaryTreeNode> stack = new Stack<>();
+    BinaryTreeNode current = root;
+    while (current != null || !stack.isEmpty()) {
+      while (current != null) {
+        stack.push(current);
+        current = current.getLeft();
+      }
+      current = stack.pop();
+      list.add(current.getValue());
+      current = current.getRight();
     }
     return list;
   }
 
-  private void inorder(BinaryTreeNode current, List<Integer> list) {
-    if (current.getLeft() != null) {
-      inorder(current.getLeft(), list);
+  public List<Integer> getInOrder() {
+    List<Integer> list = new ArrayList<>();
+    inOrder(root, list);
+    return list;
+  }
+
+  private void inOrder(BinaryTreeNode current, List<Integer> list) {
+    if (current != null) {
+      inOrder(current.getLeft(), list);
+      list.add(current.getValue());
+      inOrder(current.getRight(), list);
     }
-    list.add(current.getValue());
-    if (current.getRight() != null) {
-      inorder(current.getRight(), list);
+  }
+
+  public List<Integer> getPreOrder() {
+    List<Integer> list = new ArrayList<>();
+    preOrder(root, list);
+    return list;
+  }
+
+  private void preOrder(BinaryTreeNode current, List<Integer> list) {
+    if (current != null) {
+      list.add(current.getValue());
+      preOrder(current.getLeft(), list);
+      preOrder(current.getRight(), list);
+    }
+  }
+
+  public List<Integer> getPostOrder() {
+    List<Integer> list = new ArrayList<>();
+    postOrder(root, list);
+    return list;
+  }
+
+  private void postOrder(BinaryTreeNode current, List<Integer> list) {
+    if (current != null) {
+      postOrder(current.getLeft(), list);
+      postOrder(current.getRight(), list);
+      list.add(current.getValue());
     }
   }
 
