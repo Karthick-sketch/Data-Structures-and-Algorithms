@@ -68,7 +68,6 @@ public:
     return false;
   }
 
-  // in this function temp goes to last left child in the tree, then it returns the value
   int maximum() {
     BinaryTreeNode* temp = root;
     while (temp->getRight() != NULL) {
@@ -77,7 +76,6 @@ public:
     return temp->getValue();
   }
 
-  // in this function temp goes to last right child in the tree, then it returns the value
   int minimum() {
     BinaryTreeNode* temp = root;
     while (temp->getLeft() != NULL) {
@@ -86,21 +84,21 @@ public:
     return temp->getValue();
   }
 
-  // remove value from a tree
-  bool remove(int val) {
+  bool remove(int value) {
     BinaryTreeNode *child = root, *parent = NULL;
-    bool exists = search(val);
-    while (exists) {
-      if (child->getValue() == val) {
+    while (child != NULL) {
+      if (child->getValue() == value) {
         if (child->getLeft() != NULL && child->getRight() != NULL) {
           BinaryTreeNode* left = child->getLeft();
           BinaryTreeNode* right = child->getRight();
           if (child == root) {
             root = right;
-          } else if (parent->getLeft() == child) {
-            parent->setLeft(right);
-          } else {
-            parent->setRight(right);
+          } else if (parent != NULL) {
+            if (parent->getLeft() == child) {
+              parent->setLeft(right);
+            } else {
+              parent->setRight(right);
+            }
           }
           while (right->getLeft() != NULL) {
             right = right->getLeft();
@@ -110,23 +108,24 @@ public:
           BinaryTreeNode* setBinaryTreeNode = (child->getLeft() != NULL) ? child->getLeft() : child->getRight();
           if (child == root) {
             root = setBinaryTreeNode;
-          } else if (parent->getLeft() == child) {
-            parent->setLeft(setBinaryTreeNode);
-          } else {
-            parent->setRight(setBinaryTreeNode);
+          } else if (parent != NULL) {
+            if (parent->getLeft() == child) {
+              parent->setLeft(setBinaryTreeNode);
+            } else {
+              parent->setRight(setBinaryTreeNode);
+            }
           }
         }
         delete child;
-        break;
+        return true;
       } else {
         parent = child;
-        child = (val < child->getValue()) ? child->getLeft() : child->getRight();
+        child = (value < child->getValue()) ? child->getLeft() : child->getRight();
       }
     }
-    return exists;
+    return false;
   }
 
-  // print all values from a tree
   void print() {
     std::cout << "[ ";
     if (root != NULL) {
@@ -135,7 +134,6 @@ public:
     std::cout << "]" << std::endl;
   }
 
-  // clear all values from a tree
   void clear() {
     if (root != NULL) {
       root = clear(root);
