@@ -23,20 +23,20 @@ public class BinarySearchTree {
     if (root == null) {
       root = node;
     } else {
-      BinaryTreeNode temp = root;
+      BinaryTreeNode current = root;
       while (true) {
-        if (value < temp.getValue()) {
-          if (temp.getLeft() == null) {
-            temp.setLeft(node);
+        if (value < current.getValue()) {
+          if (current.getLeft() == null) {
+            current.setLeft(node);
             break;
           }
-          temp = temp.getLeft();
-        } else if (value > temp.getValue()) {
-          if (temp.getRight() == null) {
-            temp.setRight(node);
+          current = current.getLeft();
+        } else if (value > current.getValue()) {
+          if (current.getRight() == null) {
+            current.setRight(node);
             break;
           }
-          temp = temp.getRight();
+          current = current.getRight();
         } else {
           break;
         }
@@ -45,14 +45,14 @@ public class BinarySearchTree {
   }
 
   public boolean search(int value) {
-    BinaryTreeNode temp = root;
-    while (temp != null) {
-      if (value == temp.getValue()) {
+    BinaryTreeNode current = root;
+    while (current != null) {
+      if (value == current.getValue()) {
         return true;
-      } else if (value < temp.getValue()) {
-        temp = temp.getLeft();
+      } else if (value < current.getValue()) {
+        current = current.getLeft();
       } else {
-        temp = temp.getRight();
+        current = current.getRight();
       }
     }
     return false;
@@ -66,56 +66,73 @@ public class BinarySearchTree {
     return list;
   }
 
-  private void inorder(BinaryTreeNode temp, List<Integer> list) {
-    if (temp.getLeft() != null) {
-      inorder(temp.getLeft(), list);
+  private void inorder(BinaryTreeNode current, List<Integer> list) {
+    if (current.getLeft() != null) {
+      inorder(current.getLeft(), list);
     }
-    list.add(temp.getValue());
-    if (temp.getRight() != null) {
-      inorder(temp.getRight(), list);
+    list.add(current.getValue());
+    if (current.getRight() != null) {
+      inorder(current.getRight(), list);
     }
   }
 
   public boolean delete(int value) {
-    BinaryTreeNode current = root, previous = root;
-    while (current != null) {
-      if (value < current.getValue()) {
-        previous = current;
-        current = current.getLeft();
-      } else if (value > current.getValue()) {
-        previous = current;
-        current = current.getRight();
-      } else {
-        if (current.getLeft() != null && current.getRight() != null) {
-          BinaryTreeNode temp1 = current.getLeft(), temp2 = null;
-          while (temp1.getRight() != null) {
-            temp2 = temp1;
-            temp1 = temp1.getRight();
+    BinaryTreeNode child = root, parent = root;
+    while (child != null) {
+      if (value == child.getValue()) {
+        if (child.getLeft() != null && child.getRight() != null) {
+          BinaryTreeNode current = child.getLeft(), previous = null;
+          while (current.getRight() != null) {
+            previous = current;
+            current = current.getRight();
           }
-          current.setValue(temp1.getValue());
-          if (temp2 == null) {
-            current.setLeft(null);
+          child.setValue(current.getValue());
+          if (previous == null) {
+            child.setLeft(null);
           } else {
-            temp2.setRight(null);
+            previous.setRight(null);
           }
         } else {
-          BinaryTreeNode temp = null;
-          if (current.getLeft() != null) {
-            temp = current.getLeft();
-          } else if (current.getRight() != null) {
-            temp = current.getRight();
+          BinaryTreeNode current = null;
+          if (child.getLeft() != null) {
+            current = child.getLeft();
+          } else if (child.getRight() != null) {
+            current = child.getRight();
           }
-          if (current == root) {
-            root = temp;
-          } else if (current == previous.getLeft()) {
-            previous.setLeft(temp);
+          if (child == root) {
+            root = current;
+          } else if (child == parent.getLeft()) {
+            parent.setLeft(current);
           } else {
-            previous.setRight(temp);
+            parent.setRight(current);
           }
         }
         return true;
+      } else {
+        parent = child;
+        child = value < child.getValue() ? child.getLeft() : child.getRight();
       }
     }
     return false;
+  }
+
+  public int maximum() {
+    BinaryTreeNode current = root;
+    while (current.getRight() != null) {
+      current = current.getRight();
+    }
+    return current.getValue();
+  }
+
+  public int minimum() {
+    BinaryTreeNode current = root;
+    while (current.getLeft() != null) {
+      current = current.getLeft();
+    }
+    return current.getValue();
+  }
+
+  public void clear() {
+    root = null;
   }
 }

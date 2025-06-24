@@ -6,7 +6,11 @@ public class Tree {
     BinarySearchTree bst = new BinarySearchTree(values);
     System.out.println(bst.get());
     System.out.println(bst.search(5));
-    System.out.println(bst.delete(10));
+    System.out.println(bst.delete(8));
+    System.out.println(bst.get());
+    System.out.println(bst.maximum());
+    System.out.println(bst.minimum());
+    bst.clear();
     System.out.println(bst.get());
   }
 }
