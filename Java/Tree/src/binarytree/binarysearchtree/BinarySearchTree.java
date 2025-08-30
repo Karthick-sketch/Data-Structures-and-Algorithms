@@ -1,12 +1,12 @@
 package binarytree.binarysearchtree;
 
 import binarytree.BinaryTreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 public class BinarySearchTree {
+
   protected BinaryTreeNode root;
 
   public BinarySearchTree(int[] values) {
@@ -43,6 +43,22 @@ public class BinarySearchTree {
         }
       }
     }
+  }
+
+  public void insertRecursive(int value) {
+    root = insertRecursive(root, value);
+  }
+
+  private BinaryTreeNode insertRecursive(BinaryTreeNode current, int value) {
+    if (current == null) {
+      return new BinaryTreeNode(value);
+    }
+    if (value < current.getValue()) {
+      current.setLeft(insertRecursive(current.getLeft(), value));
+    } else if (value > current.getValue()) {
+      current.setRight(insertRecursive(current.getRight(), value));
+    }
+    return current;
   }
 
   public boolean search(int value) {
