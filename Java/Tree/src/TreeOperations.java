@@ -1,8 +1,9 @@
 import binarytree.binarysearchtree.BinarySearchTree;
 
-public class Tree {
+public class TreeOperations {
+
   public static void main(String[] args) {
-    int[] values = {8, 4, 2, 6, 1, 5, 3, 7, 10, 9, 11};
+    int[] values = { 8, 4, 2, 6, 1, 5, 3, 7, 10, 9, 11 };
     BinarySearchTree bst = new BinarySearchTree(values);
 
     System.out.println("Iterative : " + bst.get());
