@@ -4,16 +4,17 @@ using namespace std;
 
 void selectionSort(int arr[], int size) {
   for (int i = 0; i < size-1; i++) {
-    int temp = arr[i], index = i;
-    // j copy the value of i, because, i's previous position values are sorted
-    for (int j = i; j < size; j++) {
-      // to find small value in the array
-      if (temp > arr[j]) {
-        temp = arr[j]; // store the value to temp
-        index = j; // store the position number of the value
+    int min = i;
+    // 'j' copies the next value of 'i' because until 'i', the values are sorted
+    for (int j = i + 1; j < size; j++) {
+      // to find the smalest value in the unsorted region
+      if (arr[min] > arr[j]) {
+        min = j; // store the value's index number
       }
     }
-    arr[index] = arr[i]; // interchange the values
+    // swap the smallest value
+    int temp = arr[min];
+    arr[min] = arr[i];
     arr[i] = temp;
   }
 }

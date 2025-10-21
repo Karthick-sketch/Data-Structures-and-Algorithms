@@ -14,7 +14,7 @@
   - Binary Search Tree
   - AVL Tree
 
-- Hash
+- Map
 
 # Algorithms
 
