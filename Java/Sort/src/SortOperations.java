@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Random;
-import sort.*;
 
 public class SortOperations {
 
@@ -17,12 +16,15 @@ public class SortOperations {
     return arr;
   }
 
-  private static void operation(int[] arr) {
-    int[] arr2 = Arrays.copyOf(arr, arr.length);
-    System.out.println("Unsorted:\t" + Arrays.toString(arr));
-    new BubbleSort().sort(arr);
-    new SelectionSort().sort(arr2);
-    System.out.println("Bubble sort:\t" + Arrays.toString(arr));
+  private static void operation(int[] arr1) {
+    int[] arr2 = Arrays.copyOf(arr1, arr1.length);
+    int[] arr3 = Arrays.copyOf(arr1, arr1.length);
+    System.out.println("Unsorted:\t" + Arrays.toString(arr1));
+    Sort.bubbleSort(arr1);
+    System.out.println("Bubble sort:\t" + Arrays.toString(arr1));
+    Sort.selectionSort(arr2);
     System.out.println("Selection sort:\t" + Arrays.toString(arr2));
+    Sort.insertionSort(arr3);
+    System.out.println("Insertion sort:\t" + Arrays.toString(arr3));
   }
 }

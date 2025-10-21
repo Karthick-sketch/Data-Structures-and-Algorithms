@@ -3,29 +3,13 @@
 using namespace std;
 
 void insertionSort(int arr[], int size) {
-  int current = 0, temp = 0;
-  bool swap = false;
   for (int i = 1; i < size; i++) {
-    current = i;
-    temp = arr[i];
-    // this loop find the eligible number for inserting the current value into the array
-    for (int j = i-1; j >= 0; j--) {
-      if (temp < arr[j]) {
-        current--;
-        swap = true;
-      } else {
-        break;
-      }
+    int temp = arr[i];
+    int j = i - 1;
+    for (; j >= 0 && arr[j] > temp; j--) {
+      arr[j + 1] = arr[j];
     }
-
-    // below code rearrange the array and insert the current value to it
-    if (swap) {
-      for (int j = i; j > current; j--) {
-        arr[j] = arr[j-1];
-      }
-      arr[current] = temp;
-    }
-    swap = false;
+    arr[j + 1] = temp;
   }
 }
 
