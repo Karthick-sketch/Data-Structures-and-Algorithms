@@ -1,5 +1,6 @@
 public class Sort {
 
+  /* 1. Bubble Sort */
   public static void bubbleSort(int[] array) {
     for (int i = 1; i < array.length; i++) {
       for (int j = 0; j < array.length - i; j++) {
@@ -12,6 +13,7 @@ public class Sort {
     }
   }
 
+  /* 2. Selection Sort */
   public static void selectionSort(int[] array) {
     for (int i = 0; i < array.length - 1; i++) {
       int min = i;
@@ -26,6 +28,7 @@ public class Sort {
     }
   }
 
+  /* 3. Insertion Sort */
   public static void insertionSort(int[] array) {
     for (int i = 1; i < array.length; i++) {
       int temp = array[i];
@@ -37,6 +40,7 @@ public class Sort {
     }
   }
 
+  /* 4. Merge Sort */
   public static void mergeSort(int[] array) {
     int len = array.length;
     if (len <= 1) {
@@ -77,5 +81,37 @@ public class Sort {
       array[i] = right[r];
     }
     return array;
+  }
+
+  /* 5. Quick Sort */
+  public static void quickSort(int[] array) {
+    quickSort(array, 0, array.length - 1);
+  }
+
+  private static void quickSort(int[] array, int start, int end) {
+    if (end <= start) {
+      return;
+    }
+    int pivot = partition(array, start, end);
+    quickSort(array, start, pivot - 1);
+    quickSort(array, pivot + 1, end);
+  }
+
+  private static int partition(int[] array, int start, int end) {
+    int pivot = array[end];
+    int i = start - 1;
+    for (int j = start; j < end; j++) {
+      if (array[j] < pivot) {
+        i++;
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+    }
+    i++;
+    int temp = array[i];
+    array[i] = array[end];
+    array[end] = temp;
+    return i;
   }
 }
