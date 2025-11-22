@@ -23,25 +23,29 @@ public class SearchOperations {
   private static void operation(int[] arr1) {
     Scanner scanner = new Scanner(System.in);
     int index;
-    System.out.print("1. Linear Search\n2. Binary Search\n> ");
-    switch (scanner.nextInt()) {
-      case 1:
+    System.out.print("1. Linear Search\n2. Jump Search\n3. Binary Search\n> ");
+    int ip = scanner.nextInt();
+    if (ip >= 1 && ip <= 3) {
+      if (ip == 1) {
         System.out.print("Elements: " + Arrays.toString(arr1) + "\n> ");
         index = Search.linearSearch(arr1, scanner.nextInt());
         System.out.println(index == -1 ? "Not found" : "Index: " + index);
-        break;
-      case 2:
+      } else {
         List<Integer> list = Arrays.stream(arr1)
           .boxed()
           .collect(Collectors.toList());
         Collections.sort(list);
         int[] arr2 = list.stream().mapToInt(Integer::intValue).toArray();
         System.out.print("Elements: " + Arrays.toString(arr2) + "\n> ");
-        index = Search.binarySearch(arr2, scanner.nextInt());
+        if (ip == 2) {
+          index = Search.jumpSearch(arr2, scanner.nextInt());
+        } else {
+          index = Search.binarySearch(arr2, scanner.nextInt());
+        }
         System.out.println(index == -1 ? "Not found" : "Index: " + index);
-        break;
-      default:
-        operation(arr1);
+      }
+    } else {
+      operation(arr1);
     }
     scanner.close();
   }

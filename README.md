@@ -27,6 +27,7 @@
   - Quick sort
 
 - Search
+
   - Linear search
   - Binary search
   - Jump search

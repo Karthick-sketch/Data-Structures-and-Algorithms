@@ -1,7 +1,7 @@
-int linearSearch(int arr[], int size, int val) {
+int linearSearch(int arr[], int size, int search) {
   for (int i = 0; i < size; i++) {
-    if (val == arr[i]) {
-      return index;
+    if (search == arr[i]) {
+      return i;
     }
   }
   return -1;
