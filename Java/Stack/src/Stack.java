@@ -1,14 +1,15 @@
-public class Stack<T> {
-  private Node top;
+public class Stack<S> {
 
-  public void push(T value) {
-    Node node = new Node(value);
-    node.next = top; 
+  private Node<S> top;
+
+  public void push(S value) {
+    Node<S> node = new Node<>(value);
+    node.next = top;
     top = node;
   }
 
-  public T pop() {
-    Node node = top;
+  public S pop() {
+    Node<S> node = top;
     top = top.next;
     return node.getValue();
   }
@@ -16,7 +17,7 @@ public class Stack<T> {
   class Node<T> {
 
     private T value;
-    private Node next;
+    private Node<T> next;
 
     Node(T value) {
       this.value = value;
@@ -31,11 +32,11 @@ public class Stack<T> {
       this.value = value;
     }
 
-    Node getNext() {
+    Node<T> getNext() {
       return next;
     }
 
-    void setNext(Node node) {
+    void setNext(Node<T> node) {
       this.next = node;
     }
   }
