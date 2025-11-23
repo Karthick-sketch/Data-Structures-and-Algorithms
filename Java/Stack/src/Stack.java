@@ -11,7 +11,7 @@ public class Stack<S> {
   public S pop() {
     Node<S> node = top;
     top = top.next;
-    return node.getValue();
+    return node.value;
   }
 
   class Node<T> {
@@ -22,22 +22,6 @@ public class Stack<S> {
     Node(T value) {
       this.value = value;
       this.next = null;
-    }
-
-    T getValue() {
-      return value;
-    }
-
-    void setValue(T value) {
-      this.value = value;
-    }
-
-    Node<T> getNext() {
-      return next;
-    }
-
-    void setNext(Node<T> node) {
-      this.next = node;
     }
   }
 }
