@@ -1,4 +1,4 @@
-package Java.DSA.src.main.datastructures.linear;
+package datastructures.linear;
 
 public interface LinkedList<L> {
   int size();

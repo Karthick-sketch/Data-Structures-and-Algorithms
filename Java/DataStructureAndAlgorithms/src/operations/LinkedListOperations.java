@@ -1,12 +1,12 @@
-package Java.DSA.src.main.operations;
+package operations;
 
-import Java.DSA.src.main.datastructures.linear.DoublyLinkedList;
-import Java.DSA.src.main.datastructures.linear.LinkedList;
-import Java.DSA.src.main.datastructures.linear.SinglyLinkedList;
+import datastructures.linear.DoublyLinkedList;
+import datastructures.linear.LinkedList;
+import datastructures.linear.SinglyLinkedList;
 
 public class LinkedListOperations {
 
-  public static void main(String[] args) {
+  public static void operations() {
     System.out.println("Singly Linked List");
     operations(new SinglyLinkedList<>());
     System.out.println("\nDoubly Linked List");

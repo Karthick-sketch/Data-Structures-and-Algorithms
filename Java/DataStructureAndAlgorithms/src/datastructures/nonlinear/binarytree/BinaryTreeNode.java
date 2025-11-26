@@ -1,4 +1,4 @@
-package Java.DSA.src.main.datastructures.nonlinear.binarytree;
+package datastructures.nonlinear.binarytree;
 
 public class BinaryTreeNode {
 

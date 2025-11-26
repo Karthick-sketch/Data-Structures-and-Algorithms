@@ -1,13 +1,13 @@
-package Java.DSA.src.main.operations;
+package operations;
 
-import Java.DSA.src.main.algorithms.sort.Sort;
+import algorithms.sort.Sort;
 import java.util.Arrays;
 import java.util.Random;
 
 public class SortOperations {
 
-  public static void main(String[] args) {
-    operation(randomize(10));
+  public static void operations() {
+    operations(randomize(10));
   }
 
   private static int[] randomize(int length) {
@@ -19,7 +19,7 @@ public class SortOperations {
     return arr;
   }
 
-  private static void operation(int[] arr1) {
+  private static void operations(int[] arr1) {
     int[] arr2 = Arrays.copyOf(arr1, arr1.length);
     int[] arr3 = Arrays.copyOf(arr1, arr1.length);
     int[] arr4 = Arrays.copyOf(arr1, arr1.length);

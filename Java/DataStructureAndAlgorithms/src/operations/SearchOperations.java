@@ -1,6 +1,6 @@
-package Java.DSA.src.main.operations;
+package operations;
 
-import Java.DSA.src.main.algorithms.search.Search;
+import algorithms.search.Search;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class SearchOperations {
 
-  public static void main(String[] args) {
-    operation(randomize(10));
+  public static void operations() {
+    operations(randomize(10));
   }
 
   private static int[] randomize(int length) {
@@ -23,7 +23,7 @@ public class SearchOperations {
     return arr;
   }
 
-  private static void operation(int[] arr1) {
+  private static void operations(int[] arr1) {
     Scanner scanner = new Scanner(System.in);
     int index;
     System.out.print("1. Linear Search\n2. Jump Search\n3. Binary Search\n> ");
@@ -48,7 +48,7 @@ public class SearchOperations {
         System.out.println(index == -1 ? "Not found" : "Index: " + index);
       }
     } else {
-      operation(arr1);
+      operations(arr1);
     }
     scanner.close();
   }

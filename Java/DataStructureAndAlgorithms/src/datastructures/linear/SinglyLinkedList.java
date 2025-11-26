@@ -1,6 +1,6 @@
-package Java.DSA.src.main.datastructures.linear;
+package datastructures.linear;
 
-public class DoublyLinkedList<L> implements LinkedList<L> {
+public class SinglyLinkedList<L> implements LinkedList<L> {
 
   private Node<L> head;
   private int length;
@@ -33,7 +33,6 @@ public class DoublyLinkedList<L> implements LinkedList<L> {
         temp = temp.next;
       }
       temp.next = node;
-      node.previous = temp;
     }
     length++;
   }
@@ -44,19 +43,14 @@ public class DoublyLinkedList<L> implements LinkedList<L> {
       Node<L> node = new Node<>(value);
       if (index == 0) {
         node.next = head;
-        head.previous = node;
         head = node;
       } else {
         Node<L> temp = head;
         for (int i = 1; i < index; i++) {
           temp = temp.next;
         }
-        if (temp.next != null) {
-          node.next = temp.next;
-          temp.next.previous = node;
-        }
+        node.next = temp.next;
         temp.next = node;
-        node.previous = temp;
       }
       length++;
     } else {
@@ -80,18 +74,19 @@ public class DoublyLinkedList<L> implements LinkedList<L> {
   @Override
   public L delete(int index) {
     if (index >= 0 && index < length) {
-      Node<L> temp = head;
+      Node<L> node = head;
       if (index == 0) {
         head = head.next;
-        head.previous = null;
       } else {
-        for (int i = 1; i <= index; i++) {
+        Node<L> temp = head;
+        for (int i = 1; i < index; i++) {
           temp = temp.next;
         }
-        temp.previous.next = temp.next;
+        node = temp.next;
+        temp.next = node.next;
       }
       length--;
-      return temp.value;
+      return node.value;
     }
     throw new IndexOutOfBoundsException(index);
   }
@@ -110,12 +105,10 @@ public class DoublyLinkedList<L> implements LinkedList<L> {
   class Node<T> {
 
     private T value;
-    private Node<T> previous;
     private Node<T> next;
 
     Node(T value) {
       this.value = value;
-      this.previous = null;
       this.next = null;
     }
   }

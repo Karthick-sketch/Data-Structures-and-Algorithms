@@ -1,10 +1,10 @@
-package Java.DSA.src.main.operations;
+package operations;
 
-import Java.DSA.src.main.datastructures.linear.Stack;
+import datastructures.linear.Stack;
 
 public class StackOperations {
 
-  public static void main(String[] args) {
+  public static void operations() {
     Stack<String> stack = new Stack<>();
     stack.push("Hello");
     stack.push("World");

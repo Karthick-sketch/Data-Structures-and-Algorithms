@@ -1,4 +1,4 @@
-package Java.DSA.src.main.algorithms.sort;
+package algorithms.sort;
 
 public class Sort {
 

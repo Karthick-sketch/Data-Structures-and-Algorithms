@@ -1,10 +1,10 @@
-package Java.DSA.src.main.operations;
+package operations;
 
-import Java.DSA.src.main.datastructures.linear.Queue;
+import datastructures.linear.Queue;
 
 public class QueueOperations {
 
-  public static void main(String[] args) {
+  public static void operations() {
     Queue<String> queue = new Queue<>();
     queue.enqueue("Hello");
     queue.enqueue("World");
