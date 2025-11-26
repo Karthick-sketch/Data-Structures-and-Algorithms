@@ -1,4 +1,6 @@
-package Java.Queue.src;
+package Java.DSA.src.main.operations;
+
+import Java.DSA.src.main.datastructures.linear.Queue;
 
 public class QueueOperations {
 

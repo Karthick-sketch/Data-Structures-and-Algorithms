@@ -1,4 +1,4 @@
-package Java.LinkedList.src;
+package Java.DSA.src.main.datastructures.linear;
 
 public class DoublyLinkedList<L> implements LinkedList<L> {
 

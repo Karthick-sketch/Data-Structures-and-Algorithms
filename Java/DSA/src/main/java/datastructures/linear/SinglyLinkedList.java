@@ -1,4 +1,4 @@
-package Java.LinkedList.src;
+package Java.DSA.src.main.datastructures.linear;
 
 public class SinglyLinkedList<L> implements LinkedList<L> {
 

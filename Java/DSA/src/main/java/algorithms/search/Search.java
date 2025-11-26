@@ -1,3 +1,5 @@
+package algorithms.search;
+
 public class Search {
 
   public static int linearSearch(int[] array, int search) {

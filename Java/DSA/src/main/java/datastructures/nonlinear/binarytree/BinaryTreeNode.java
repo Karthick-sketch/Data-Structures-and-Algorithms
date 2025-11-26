@@ -1,6 +1,7 @@
-package binarytree;
+package Java.DSA.src.main.datastructures.nonlinear.binarytree;
 
 public class BinaryTreeNode {
+
   private int value;
   private BinaryTreeNode left;
   private BinaryTreeNode right;

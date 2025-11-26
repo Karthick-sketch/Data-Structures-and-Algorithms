@@ -1,3 +1,5 @@
+package Java.DSA.src.main.datastructures.linear;
+
 public class Stack<S> {
 
   private Node<S> top;

@@ -1,3 +1,7 @@
+package Java.DSA.src.main.operations;
+
+import Java.DSA.src.main.datastructures.linear.Stack;
+
 public class StackOperations {
 
   public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package Java.DSA.src.main.algorithms.sort;
+
 public class Sort {
 
   /* 1. Bubble Sort */

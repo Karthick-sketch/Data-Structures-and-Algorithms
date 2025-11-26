@@ -1,4 +1,4 @@
-package binarytree.binarysearchtree;
+package Java.DSA.src.main.datastructures.nonlinear.binarytree.binarysearchtree;
 
 import binarytree.BinaryTreeNode;
 import java.util.ArrayList;

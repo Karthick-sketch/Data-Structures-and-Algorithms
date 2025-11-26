@@ -1,4 +1,4 @@
-package Java.Queue.src;
+package Java.DSA.src.main.datastructures.linear;
 
 public class Queue<Q> {
 

@@ -1,4 +1,8 @@
-package Java.LinkedList.src;
+package Java.DSA.src.main.operations;
+
+import Java.DSA.src.main.datastructures.linear.DoublyLinkedList;
+import Java.DSA.src.main.datastructures.linear.LinkedList;
+import Java.DSA.src.main.datastructures.linear.SinglyLinkedList;
 
 public class LinkedListOperations {
 
